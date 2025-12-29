@@ -1,0 +1,455 @@
+/* ============================================
+   EQUILÍBRIO PERFEITO - Chat Design
+   Replica exata do site original
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764fa2 100%);
+    --questionador-bg: #667eea;
+    --manus-bg: #ffffff;
+    --manus-text: #2d3748;
+    --questionador-text: #ffffff;
+    --background: #f5f5f7;
+    --border-color: #e5e5e7;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background);
+    color: #1a1a1a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   CHAT CONTAINER
+   ============================================ */
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   HEADER / HERO
+   ============================================ */
+
+.chat-header {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    padding: 48px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chat-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.chat-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+
+.chat-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.95;
+    letter-spacing: 0.3px;
+}
+
+/* ============================================
+   MESSAGES CONTAINER
+   ============================================ */
+
+.chat-messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px 16px;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ============================================
+   MESSAGE WRAPPER & BUBBLE
+   ============================================ */
+
+.message-wrapper {
+    display: flex;
+    width: 100%;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.message-wrapper.questionador-side {
+    justify-content: flex-start;
+}
+
+.message-wrapper.manus-side {
+    justify-content: flex-end;
+}
+
+.message-bubble {
+    display: block;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+.message-bubble.questionador {
+    background-color: var(--questionador-bg);
+    color: var(--questionador-text);
+}
+
+.message-bubble.manus {
+    background-color: var(--manus-bg);
+    color: var(--manus-text);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   MESSAGE LABEL & CONTENT
+   ============================================ */
+
+.message-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.message-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.message-content p {
+    margin-bottom: 12px;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.message-content strong {
+    font-weight: 600;
+}
+
+.message-content em {
+    font-style: italic;
+}
+
+/* ============================================
+   HEADINGS IN MESSAGES
+   ============================================ */
+
+.message-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* ============================================
+   LISTS
+   ============================================ */
+
+.theory-list {
+    list-style: none;
+    margin: 12px 0;
+    padding-left: 0;
+}
+
+.theory-list li {
+    margin-bottom: 12px;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.theory-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+}
+
+.message-bubble.questionador .theory-list li::before {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.message-bubble.manus .theory-list li::before {
+    color: var(--questionador-bg);
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.data-table thead {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.message-bubble.questionador .data-table thead {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.data-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.message-bubble.questionador .data-table th {
+    color: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.data-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.message-bubble.questionador .data-table td {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.message-bubble.questionador .data-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   BLOCKQUOTE
+   ============================================ */
+
+.highlight-quote {
+    margin: 16px 0;
+    padding: 16px;
+    padding-left: 16px;
+    border-left: 4px solid rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.message-bubble.questionador .highlight-quote {
+    border-left-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.chat-footer {
+    background: var(--background);
+    border-top: 1px solid var(--border-color);
+    padding: 24px 16px;
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .chat-header {
+        padding: 32px 16px;
+    }
+
+    .chat-title {
+        font-size: 1.5rem;
+    }
+
+    .chat-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .chat-messages {
+        gap: 12px;
+        padding: 16px 12px;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        padding: 16px;
+    }
+
+    .message-content {
+        font-size: 0.9rem;
+    }
+
+    .data-table {
+        font-size: 0.8rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px;
+    }
+
+    .message-content h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-header {
+        padding: 24px 12px;
+    }
+
+    .chat-title {
+        font-size: 1.25rem;
+    }
+
+    .chat-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .chat-messages {
+        gap: 8px;
+        padding: 12px 8px;
+    }
+
+    .message-bubble {
+        max-width: 95%;
+        padding: 12px;
+    }
+
+    .message-content {
+        font-size: 0.85rem;
+    }
+
+    .message-label {
+        font-size: 0.85rem;
+    }
+
+    .data-table {
+        font-size: 0.75rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 6px;
+    }
+
+    .message-content h3 {
+        font-size: 0.95rem;
+        margin-top: 12px;
+    }
+
+    .theory-list li {
+        padding-left: 12px;
+        margin-bottom: 8px;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-wrapper {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.message-wrapper:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.message-wrapper:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.message-wrapper:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.message-wrapper:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.message-wrapper:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .chat-header {
+        background: var(--primary-gradient);
+    }
+
+    .message-wrapper {
+        page-break-inside: avoid;
+    }
+}
