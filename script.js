@@ -1,24 +1,13 @@
-/**
- * EQUILÍBRIO PERFEITO - Interactive Chat
- * Funcionalidades: animações, interatividade, scroll suave
- */
-
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
 });
 
-/**
- * Inicializar aplicação
- */
 function initializeApp() {
     setupScrollBehavior();
     setupMessageInteractions();
     setupTableInteractions();
 }
 
-/**
- * Configurar comportamento de scroll com Intersection Observer
- */
 function setupScrollBehavior() {
     const messages = document.querySelectorAll('.message-wrapper');
     
@@ -45,9 +34,6 @@ function setupScrollBehavior() {
     });
 }
 
-/**
- * Configurar interações com mensagens
- */
 function setupMessageInteractions() {
     const bubbles = document.querySelectorAll('.message-bubble');
     
@@ -68,9 +54,6 @@ function setupMessageInteractions() {
     });
 }
 
-/**
- * Configurar interações com tabelas
- */
 function setupTableInteractions() {
     const tables = document.querySelectorAll('.data-table');
     
@@ -89,9 +72,6 @@ function setupTableInteractions() {
     });
 }
 
-/**
- * Adicionar estilos de animação dinamicamente
- */
 const style = document.createElement('style');
 style.textContent = `
     .message-bubble {
@@ -110,7 +90,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-/**
- * Log de inicialização
- */
 console.log('✓ Equilíbrio Perfeito - Chat inicializado com sucesso');
